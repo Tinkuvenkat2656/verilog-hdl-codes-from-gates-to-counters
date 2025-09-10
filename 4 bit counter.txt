@@ -1,0 +1,15 @@
+module count4 (d, en, rst, clk, q);
+  input wire [3:0] d;
+  input wire en, rst, clk;
+  output reg [3:0] q;
+  always @ (posedge clk) begin
+    if (rst) begin
+      q <= 4'b0000; 
+    end
+    else if (en) begin
+      q <= d+1'b1;
+    end
+    else 
+      q <= d;
+  end
+endmodule

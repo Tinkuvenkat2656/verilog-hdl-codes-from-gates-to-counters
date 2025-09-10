@@ -1,0 +1,12 @@
+module not_gate_tb;
+  reg a;
+  wire y;
+  not_gate dut (.a(a), .y(y));
+  initial begin
+    $monitor("time=%t, a=%b, y=%b", $time, a,y);
+    a=0; #10
+    a=1; #10
+    a=0; #10
+    $finish;
+  end
+endmodule

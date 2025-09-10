@@ -1,0 +1,14 @@
+`timescale 1ns/1ps
+module reg4_enrst (d, clk, en, rst, q);
+  input wire [3:0] d;
+  input wire clk, en, rst;
+  output reg [3:0] q;
+  always @ (posedge clk) begin
+    if (rst) begin
+      q <= 4'b0000;
+    end
+    else if (en) begin
+      q <= d; 
+    end
+  end
+endmodule

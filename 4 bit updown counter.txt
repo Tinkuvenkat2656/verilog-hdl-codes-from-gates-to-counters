@@ -1,0 +1,20 @@
+`timescale 1ns/1ps
+module count4_updown (d, en, rst, clk, updown, q);
+  input wire [3:0] d;
+  input wire en, rst, clk, updown;
+  output reg [3:0] q;
+  always @ (posedge clk) begin
+    if (rst) begin
+      q <= 4'b0000;
+    end
+    else if (en) begin
+      if (updown)
+        q <= q + 1'b1;
+      else
+        q <= q - 1'b1;
+    end
+    else 
+      q <= d;
+  end
+endmodule
+        

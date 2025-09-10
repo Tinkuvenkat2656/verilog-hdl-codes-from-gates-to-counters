@@ -1,0 +1,22 @@
+`timescale 1ns/1ps
+module count4_updown_tb;
+  reg [3:0] d;
+  reg en, rst, clk, updown;
+  wire [3:0] q;
+  count4_updown dut (.d(d), .en(en), .rst(rst), .clk(clk), .updown(updown), .q(q));
+  initial clk=0;
+  always #5 clk=~clk;
+  initial begin 
+    $dumpfile("wave.vcd");
+    $dumpvars(0, count4_updown_tb);
+  end
+  initial begin
+    $monitor("time=%0t, d=%b, en=%b, rst=%b, clk=%b, updown=%b, q=%b", $time, d, en, rst, clk, updown, q);
+    rst=0; en=0; d=4'b0000; #10;
+    rst=1; en=0; d=4'b0000; #10;
+    rst=0; en=1; updown=0; #10;
+    rst=0; en=1; updown=1; #10;
+    rst=1; en=1; #10;
+    $finish;
+  end
+endmodule

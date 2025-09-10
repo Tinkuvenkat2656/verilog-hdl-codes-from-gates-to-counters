@@ -1,0 +1,21 @@
+`timescale 1ns/1ps
+module jk_ff_tb;
+  reg j, k, clk;
+  wire q, qbar;
+  jk_ff dut (.j(j), .k(k), .clk(clk), .q(q), .qbar(qbar));
+  initial clk=0;
+  always #5 clk=~clk;
+  initial begin
+    $dumpfile("wave.vcd");
+    $dumpvars(0, jk_ff_tb);
+  end
+  initial begin
+    $monitor("time=%0t, j=%b, k=%b, clk=%b, q=%b, qbar=%b", $time, j, k, clk, q, qbar);
+           j=0; k=0; #10;
+           j=1; k=0; #10;
+           j=0; k=1; #10;
+           j=1; k=0; #10;
+           j=1; k=1; #10;
+    $finish;
+  end
+endmodule

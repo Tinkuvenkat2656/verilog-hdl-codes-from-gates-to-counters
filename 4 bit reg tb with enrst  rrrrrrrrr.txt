@@ -1,0 +1,21 @@
+`timescale 1ns/1ps
+module reg4_enrst_tb;
+  reg [3:0] d;
+  reg clk, en, rst;
+  wire [3:0] q;
+  reg4_enrst dut (.d(d), .clk(clk), .en(en), .rst(rst), .q(q));
+  initial clk=0;
+  always #5 clk=~clk;
+  initial begin
+    $dumpfile("wave.vcd");
+    $dumpvars(0, reg4_enrst_tb);
+  end
+  initial begin
+    $monitor("time=%0t, d=%b, clk=%b, en=%b, rst=%b, q=%b", $time, d, clk, en, rst, q);
+    rst=0; en=0; d=4'b0000; #10;
+    rst=1; en=0; d=4'b0000; #10;
+    rst=0; en=1; d=q; #10;
+    rst=1; en=1; #10;
+    $finish;
+  end
+endmodule

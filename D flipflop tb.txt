@@ -1,0 +1,26 @@
+`timescale 1ns/1ps
+module d_ff_tb;
+  reg D;
+  reg clk;
+  wire Q;
+  d_ff dut (.D(D), .clk(clk), .Q(Q));
+  initial clk=0;
+  always #5 clk=~clk;
+  initial begin
+    $dumpfile("wave.vcd");
+    $dumpvars(0, d_ff_tb);
+  end
+  initial begin
+    $monitor("time=%0t, D=%b, clk=%b, Q=%b", $time, D, clk, Q);
+    D=0; 
+    D=1; #10;
+    D=0; #10;
+    D=1; #10;
+    D=0; #10;
+    $finish;
+  end
+endmodule
+
+
+
+

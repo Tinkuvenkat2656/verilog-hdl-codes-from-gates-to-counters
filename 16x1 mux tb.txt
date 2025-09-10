@@ -1,0 +1,22 @@
+module mux_16x1_tb;
+  reg [15:0] I;
+  reg [3:0] sel;
+  wire y;
+  mux_16x1 dut (.I(I), .sel(sel), .y(y));
+  initial begin 
+    $dumpfile("wave.vcd");
+    $dumpvars(0, mux_16x1_tb);
+  end
+  initial begin
+    $monitor("time=%0t, I=%b, sel=%b, y=%b", $time, I, sel, y);
+  end
+  initial begin
+    I = 16'b0000_0000_0000_0001; sel = 4'b0000; #10;
+    I = 16'b0000_0000_0000_0010; sel = 4'b0001; #10;
+    I = 16'b0000_0000_0000_0100; sel = 4'b0010; #10;
+    I = 16'b0000_0000_0000_1000; sel = 4'b0011; #10;
+    I = 16'b1000_0000_0000_0000; sel = 4'b1111; #10;
+    $finish;
+  end
+endmodule
+    

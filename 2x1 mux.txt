@@ -1,0 +1,5 @@
+module mux_2x1 (a, b, en, sel, y);
+  input a, b, en, sel;
+  output y;
+  assign y= en ?(sel ? b:a) : 1'b0;
+endmodule

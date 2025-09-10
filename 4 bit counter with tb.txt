@@ -1,0 +1,22 @@
+module count4_tb;
+  reg [3:0] d;
+  reg en, rst, clk;
+  wire [3:0] q;
+  count4 dut (.d(d), .en(en), .rst(rst), .clk(clk), .q(q));
+  initial clk=0;
+  always #5 clk=~clk;
+  initial begin
+    $dumpfile("wave.vcd");
+    $dumpvars(0, count4_tb);
+  end
+  initial begin
+    $monitor("time=%0t, d=%b, en=%b, rst=%b, clk=%b, q=%b", $time, d, en, rst, clk, q);
+    rst=0; en=0; d=4'bxxxx; #10;
+    rst=1; en=0; d=4'b0000; #10;
+    rst=0; en=1; d=4'b0001; #10;
+    rst=0; en=0; d=4'b0001; #10;
+    rst=0; en=1; d=4'b0010; #10;
+    rst=1; en=1; d=4'b0000; #10;
+    $finish;
+  end
+endmodule
