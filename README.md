@@ -1,7 +1,7 @@
 Greetings to the one who came here to find the explanation to the codes that I,ve mentioned in the repository.
 I wrote all these codes seeking the help from chatgpt and by running these on EDA playground. 
 I started with the gates, going on with some combinational circuits like adders, mux, decoders etc. 
-While writing the DUT for combinational codes, I got to learn the basic DUT data types, vectors, port list syntax, input declarations, blocking statements and tb's were basic tb's, not the self checking tb's
+While writing the DUT for combinational codes, I got to learn the basic DUT data types, vectors, port list syntax, input declarations, blocking statements and non blocking statements, tb's were basic tb's, not the self checking tb's
 But the real learning started from writing Sequentional circuit DUT starting from latches and flipflops
 Because the seq circuits has this thing called clock. so the real part started now
 Postitive edge trigered, reset, Synchronous and Asynchronous reset, non blocking statements, posedge clk, reg and wire data type differences in DUT and tb, and so on
